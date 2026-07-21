@@ -90,8 +90,8 @@ export default function Footer({ setActiveTab }: FooterProps) {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('team')} className="hover:text-accent-blue transition-colors text-left">
-                  Our Team
+                <button onClick={() => handleNav('repository')} className="hover:text-accent-blue transition-colors text-left">
+                  Repository
                 </button>
               </li>
               <li>

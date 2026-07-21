@@ -536,7 +536,7 @@ export default function ScrollVideoScrubber({
             </p>
           </div>
 
-          {/* Learn... Phase Container */}
+          {/* Explore... Phase Container */}
           <div 
             style={{ 
               opacity: learnPrefixOpacity,
@@ -544,15 +544,15 @@ export default function ScrollVideoScrubber({
             }}
             className="flex flex-col items-center justify-center space-y-3 md:space-y-6 w-full"
           >
-            {/* Steady "Learn..." Anchor */}
+            {/* Steady "Explore..." Anchor */}
             <span className="text-2xl md:text-4xl font-mono text-white/60 tracking-widest uppercase font-bold">
-              Learn...
+              Explore...
             </span>
 
             {/* Dynamic changing words container */}
             <div className="relative w-full h-[180px] md:h-[220px] flex items-center justify-center">
               
-              {/* Phrase A: "3D modeling and design in Fusion" */}
+              {/* Phrase A: "Cool Projects" */}
               <div 
                 style={{ 
                   opacity: phraseAOpacity,
@@ -562,11 +562,11 @@ export default function ScrollVideoScrubber({
                 className="absolute w-full px-4 transition-all duration-300 ease-out"
               >
                 <h2 className="text-4xl md:text-7xl lg:text-8xl font-sans font-bold text-white tracking-[-0.045em] leading-tight drop-shadow-md">
-                  <ScrambledText text="3D modeling and design in Fusion" active={isPhraseAActive} />
+                  <ScrambledText text="Cool Projects" active={isPhraseAActive} />
                 </h2>
               </div>
 
-              {/* Phrase B: "3D Printing & Digital Fabrication" */}
+              {/* Phrase B: "Websites" */}
               <div 
                 style={{ 
                   opacity: phraseBOpacity,
@@ -576,11 +576,11 @@ export default function ScrollVideoScrubber({
                 className="absolute w-full px-4 transition-all duration-300 ease-out"
               >
                 <h2 className="text-4xl md:text-7xl lg:text-8xl font-sans font-bold text-white tracking-[-0.045em] leading-tight drop-shadow-md">
-                  <ScrambledText text="3D Printing & Digital Fabrication" active={isPhraseBActive} />
+                  <ScrambledText text="Websites" active={isPhraseBActive} />
                 </h2>
               </div>
 
-              {/* Phrase C: "And more" */}
+              {/* Phrase C: "And More" */}
               <div 
                 style={{ 
                   opacity: phraseCOpacity,
@@ -590,7 +590,7 @@ export default function ScrollVideoScrubber({
                 className="absolute w-full px-4 transition-all duration-300 ease-out"
               >
                 <h2 className="text-4xl md:text-7xl lg:text-8xl font-sans font-bold text-white tracking-[-0.045em] leading-tight drop-shadow-md">
-                  <ScrambledText text="And more" active={isPhraseCActive} />
+                  <ScrambledText text="And More" active={isPhraseCActive} />
                 </h2>
                 
                 {/* Visual action buttons showing up during the last section to prompt further exploration */}

@@ -17,7 +17,7 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
     { id: 'home', label: 'HOME' },
     { id: 'about', label: 'ABOUT' },
     { id: 'projects', label: 'PROJECTS' },
-    { id: 'team', label: 'OUR TEAM' },
+    { id: 'repository', label: 'REPOSITORY' },
     { id: 'contact', label: 'CONTACT' },
   ];
 
@@ -32,7 +32,7 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
       id: 'about',
       label: 'About',
       subtitle: 'Meet Ziyao Xu, founder and executive lead',
-      keywords: ['about', 'team', 'leadership', 'ziyao', 'xu', 'founder', 'members', 'people', 'staff'],
+      keywords: ['about', 'ziyao', 'xu', 'founder', 'bio', 'profile'],
     },
     {
       id: 'projects',
@@ -41,10 +41,10 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
       keywords: ['projects', 'work', 'builds', 'portfolio'],
     },
     {
-      id: 'team',
-      label: 'Our Team',
-      subtitle: 'Academic timeline, research notebook, and labs syllabus',
-      keywords: ['team', 'curriculum', 'syllabus', 'timeline', 'research', 'notebook', 'labs', 'methodology', 'philosophy', 'mission', 'story'],
+      id: 'repository',
+      label: 'Repository',
+      subtitle: 'Repository archive',
+      keywords: ['repository', 'repo', 'code', 'archive', 'files'],
     },
     {
       id: 'contact',
@@ -72,10 +72,10 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
       const query = searchQuery.toLowerCase();
       if (query.includes('project') || query.includes('work') || query.includes('build')) {
         setActiveTab('projects');
-      } else if (query.includes('team') || query.includes('member') || query.includes('ziyao') || query.includes('people') || query.includes('staff')) {
+      } else if (query.includes('about') || query.includes('ziyao') || query.includes('bio')) {
         setActiveTab('about');
-      } else if (query.includes('curriculum') || query.includes('syllabus') || query.includes('about') || query.includes('notebook') || query.includes('research') || query.includes('philosophy') || query.includes('mission') || query.includes('story')) {
-        setActiveTab('team');
+      } else if (query.includes('repository') || query.includes('repo') || query.includes('code')) {
+        setActiveTab('repository');
       } else if (query.includes('inquiry') || query.includes('admissions') || query.includes('contact') || query.includes('form')) {
         setActiveTab('contact');
       } else {
