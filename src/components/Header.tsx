@@ -16,7 +16,7 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
   const navItems = [
     { id: 'home', label: 'HOME' },
     { id: 'about', label: 'ABOUT' },
-    { id: 'courses', label: 'COURSES' },
+    { id: 'projects', label: 'PROJECTS' },
     { id: 'team', label: 'OUR TEAM' },
     { id: 'contact', label: 'CONTACT' },
   ];
@@ -35,10 +35,10 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
       keywords: ['about', 'team', 'leadership', 'ziyao', 'xu', 'founder', 'members', 'people', 'staff'],
     },
     {
-      id: 'courses',
-      label: 'Academic Courses',
-      subtitle: 'Course programs, student projects, and 3D sandbox',
-      keywords: ['courses', 'programs', 'projects', '3d', 'modeling', 'sandbox', 'student', 'class', 'work'],
+      id: 'projects',
+      label: 'Projects',
+      subtitle: 'Projects showcase',
+      keywords: ['projects', 'work', 'builds', 'portfolio'],
     },
     {
       id: 'team',
@@ -70,8 +70,8 @@ export default function Header({ activeTab, setActiveTab, onInquireClick }: Head
       setActiveTab(filteredItems[0].id);
     } else {
       const query = searchQuery.toLowerCase();
-      if (query.includes('3d') || query.includes('sandbox') || query.includes('model') || query.includes('project') || query.includes('course') || query.includes('class') || query.includes('program')) {
-        setActiveTab('courses');
+      if (query.includes('project') || query.includes('work') || query.includes('build')) {
+        setActiveTab('projects');
       } else if (query.includes('team') || query.includes('member') || query.includes('ziyao') || query.includes('people') || query.includes('staff')) {
         setActiveTab('about');
       } else if (query.includes('curriculum') || query.includes('syllabus') || query.includes('about') || query.includes('notebook') || query.includes('research') || query.includes('philosophy') || query.includes('mission') || query.includes('story')) {

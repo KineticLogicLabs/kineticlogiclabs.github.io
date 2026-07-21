@@ -258,7 +258,7 @@ export default function OurTeam() {
       id: 0,
       label: 'FOUNDATION',
       icon: <Compass className="w-4 h-4 text-white/80" />,
-      title: 'Founder & Executive Lead',
+      title: '',
       paragraph: "Hi, my name’s Ziyao and I’m a freshman at Eastlake High School. I enjoy many activities in STEM and engineering including 3D design and CAD.",
       mediaType: 'image',
       mediaSrc: ziyaoPhoto
@@ -351,11 +351,8 @@ export default function OurTeam() {
       {/* Intro Header */}
       <div className="max-w-4xl space-y-2">
         <div className="space-y-1">
-          <div className="text-2xl md:text-4xl font-sans font-bold text-white/80 tracking-tight">
-            Founder and Executive Lead
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-extrabold text-white tracking-tighter leading-none">
-            Ziyao Xu
+            About me
           </h2>
         </div>
       </div>

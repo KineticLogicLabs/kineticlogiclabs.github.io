@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 interface ScrollVideoScrubberProps {
   videoUrl: string; // Kept for signature compatibility
-  onViewCourses: () => void;
+  onViewProjects: () => void;
   onViewAbout: () => void;
 }
 
@@ -194,7 +194,7 @@ const SCATTERED_IMAGES = [
 ];
 
 export default function ScrollVideoScrubber({ 
-  onViewCourses, 
+  onViewProjects, 
   onViewAbout 
 }: ScrollVideoScrubberProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -596,10 +596,10 @@ export default function ScrollVideoScrubber({
                 {/* Visual action buttons showing up during the last section to prompt further exploration */}
                 <div className="flex flex-wrap justify-center items-center gap-4 mt-8">
                   <button
-                    onClick={onViewCourses}
+                    onClick={onViewProjects}
                     className="px-5 py-2.5 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 border bg-accent-blue text-bone-light border-accent-blue/40 hover:bg-opacity-90 shadow-lg pointer-events-auto"
                   >
-                    View Courses
+                    View Projects
                   </button>
                   <button
                     onClick={onViewAbout}

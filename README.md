@@ -1,3 +1,3 @@
-# Kinetic Logic Labs
+# Kinetic Logic Labs Educational
 
-The main website and portfolio of Kinetic Logic Labs
+The educational platform of Kinetic Logic Labs, featuring 3D modeling programs.
