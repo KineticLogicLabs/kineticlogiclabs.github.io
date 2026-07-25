@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kinetic Logic Labs — Design Lab</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap');
+    :root{--ink:#14221f;--paper:#edf0ea;--line:#b8c4bb;--muted:#5c6c63;--accent:#e94d33}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,sans-serif}.shell{display:grid;grid-template-columns:310px 1fr;min-height:100vh}.sidebar{border-right:1px solid var(--line);padding:28px 20px;position:sticky;top:0;height:100vh;overflow:auto}.brand{font-size:20px;font-weight:800;line-height:.94;letter-spacing:-.07em}.brand span{color:var(--accent)}.intro{font:13px/1.55 'DM Mono';color:var(--muted);margin:30px 0}.groups{display:grid;gap:22px}.group-label{font:10px 'DM Mono';letter-spacing:.12em;color:var(--muted);margin-bottom:8px}.concept{width:100%;appearance:none;border:0;border-top:1px solid var(--line);background:transparent;color:inherit;padding:12px 0;display:grid;grid-template-columns:30px 1fr;gap:9px;text-align:left;cursor:pointer;font:inherit}.concept:last-child{border-bottom:1px solid var(--line)}.concept .num{font:11px 'DM Mono';color:var(--muted)}.concept b{display:block;font-size:13px}.concept span:last-child{display:block;font:10px/1.4 'DM Mono';color:var(--muted);margin-top:3px}.concept:hover,.concept[aria-current=true]{color:var(--accent)}.concept[aria-current=true] .num,.concept[aria-current=true] span:last-child{color:inherit}.stage{padding:24px;min-width:0}.stagebar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:17px}.eyebrow{font:11px 'DM Mono';color:var(--muted)}h1{font-size:24px;letter-spacing:-.05em;margin:0}.actions{display:flex;gap:8px}.actions button,.actions a{border:1px solid var(--line);background:transparent;color:inherit;padding:8px 10px;font:10px 'DM Mono';text-decoration:none;cursor:pointer}.actions button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}.frame-wrap{background:#ced9d0;border:1px solid var(--line);padding:16px;min-height:calc(100vh - 89px)}iframe{width:100%;height:calc(100vh - 121px);border:0;background:white;display:block}.frame-wrap.mobile iframe{width:390px;margin:auto;box-shadow:0 18px 45px #14221f33}.frame-wrap.tablet iframe{width:768px;max-width:100%;margin:auto;box-shadow:0 18px 45px #14221f22}@media(max-width:850px){.shell{display:block}.sidebar{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:20px}.intro{margin:15px 0}.groups{grid-template-columns:1fr 1fr;gap:20px}.stage{padding:15px}.frame-wrap{padding:10px;min-height:700px}iframe{height:680px}}@media(max-width:540px){.groups{grid-template-columns:1fr}.stagebar{align-items:flex-start;flex-direction:column}.frame-wrap.mobile iframe{max-width:100%;box-shadow:none}.actions{flex-wrap:wrap}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">KINETIC<br><span>LOGIC</span> LABS</div>
+      <p class="intro">A click-through design lab for the homepage exploration. These are isolated concepts; the production site is unchanged.</p>
+      <div class="groups" id="concepts"></div>
+    </aside>
+    <main class="stage">
+      <div class="stagebar"><div><div class="eyebrow" id="category"></div><h1 id="title"></h1></div><div class="actions"><button data-size="desktop" aria-pressed="true">Desktop</button><button data-size="tablet" aria-pressed="false">Tablet</button><button data-size="mobile" aria-pressed="false">Mobile</button><a id="open" target="_blank" rel="noopener">Open concept ↗</a></div></div>
+      <div class="frame-wrap" id="frame-wrap"><iframe id="preview" title="Homepage design concept"></iframe></div>
+    </main>
+  </div>
+  <script>
+    const concepts=[
+      ['Original directions',[['01','Field notes','A quiet research journal','01-field-notes.html'],['02','Editorial atelier','High-contrast project-led portfolio','02-atelier.html'],['03','Systems index','Structured engineering catalogue','03-systems-index.html'],['04','Kinetic studio','Split-screen media-led experience','04-kinetic-studio.html'],['05','Research ledger','Publication-style research narrative','05-research-ledger.html']]],
+      ['Systems Index × Research Ledger',[['06','Margin index','Editorial notes with systems navigation','06-margin-index.html'],['07','Signal report','Lead story plus compact metrics','07-signal-report.html'],['08','Cross reference','Visual record paired with a project table','08-cross-reference.html'],['09','Process timeline','Methodology as the organizing structure','09-process-timeline.html'],['10','Dark atlas','Dark technical atlas with narrative records','10-dark-atlas.html']]],
+      ['New aesthetic studies',[['11','Bauhaus workshop','Primary colors and geometric workshop energy','11-bauhaus-workshop.html'],['12','Brutalist grid','Electric blue, raw type, and hard divisions','12-brutalist-grid.html'],['13','Cobalt salon','Editorial blue with a refined research voice','13-cobalt-salon.html'],['14','Playful forms','Soft color, rounded forms, and an optimistic tone','14-playful-forms.html'],['15','Swiss signal','Strict black-and-white grid with a signal-red accent','15-swiss-signal.html']]],
+      ['Selected hybrid',[['16','Cobalt signal report','Signal Report structure in the Cobalt Salon palette','16-cobalt-signal-report.html']]]
+    ];
+    const list=document.getElementById('concepts'),preview=document.getElementById('preview'),title=document.getElementById('title'),category=document.getElementById('category'),open=document.getElementById('open'),frame=document.getElementById('frame-wrap');
+    let active;
+    function select(item,group,button){active=item;preview.src=item[3];title.textContent=item[1];category.textContent=group.toUpperCase();open.href=item[3];document.querySelectorAll('.concept').forEach(x=>x.setAttribute('aria-current','false'));button.setAttribute('aria-current','true');}
+    concepts.forEach(([group,items])=>{const block=document.createElement('section');block.innerHTML=`<div class="group-label">${group}</div>`;items.forEach(item=>{const b=document.createElement('button');b.className='concept';b.innerHTML=`<span class="num">${item[0]}</span><span><b>${item[1]}</b><span>${item[2]}</span></span>`;b.addEventListener('click',()=>select(item,group,b));block.appendChild(b);if(!active)select(item,group,b)});list.appendChild(block)});
+    document.querySelectorAll('[data-size]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-size]').forEach(x=>x.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');frame.className='frame-wrap '+(button.dataset.size==='desktop'?'':button.dataset.size)}));
+  </script>
+</body>
+</html>
