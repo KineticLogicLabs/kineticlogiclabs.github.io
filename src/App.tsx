@@ -182,6 +182,7 @@ function HomePage() {
           <span className="coral-label">INDEPENDENT ENGINEERING JOURNAL</span>
           <h1>Observe.<br />Model. Test.</h1>
           <p>Kinetic Logic Labs records work in CAD, fabrication, and science research with enough context to show how an idea changed into evidence.</p>
+          <a className="hero-browse" href="#/projects">BROWSE ALL PROJECTS</a>
         </div>
       </section>
       <section className="featured" data-reveal>
