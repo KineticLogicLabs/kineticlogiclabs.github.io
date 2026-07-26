@@ -94,10 +94,10 @@ function Header({ page }: { page: Page }) {
           aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <svg className="menu-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <line className="menu-icon-line menu-icon-top" x1="3" y1="7" x2="21" y2="7" />
-            <line className="menu-icon-line menu-icon-middle" x1="3" y1="12" x2="21" y2="12" />
-            <line className="menu-icon-line menu-icon-bottom" x1="3" y1="17" x2="21" y2="17" />
+          <svg className="menu-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <line className="menu-icon-line menu-icon-top" x1="8" y1="10" x2="24" y2="10" />
+            <line className="menu-icon-line menu-icon-middle" x1="8" y1="16" x2="24" y2="16" />
+            <line className="menu-icon-line menu-icon-bottom" x1="8" y1="22" x2="24" y2="22" />
           </svg>
           <span className="visually-hidden">{menuOpen ? 'Close menu' : 'Open menu'}</span>
         </button>
@@ -182,19 +182,6 @@ function HomePage() {
           <span className="coral-label">INDEPENDENT ENGINEERING JOURNAL</span>
           <h1>Observe.<br />Model. Test.</h1>
           <p>Kinetic Logic Labs records work in CAD, fabrication, and science research with enough context to show how an idea changed into evidence.</p>
-          <dl className="hero-facts">
-            <div><dt>PROJECT</dt><dd>Pencil Case</dd></div>
-            <div><dt>SOFTWARE</dt><dd>Fusion</dd></div>
-            <div><dt>PRACTICE</dt><dd>CAD Modeling</dd></div>
-            <div><dt>DOCUMENTATION</dt><dd>Open · Closed · Process Video</dd></div>
-          </dl>
-        </div>
-      </section>
-      <section className="result-band" data-reveal>
-        <div className="result-inner">
-          <span className="coral-label">DOCUMENTED OUTCOME / 01</span>
-          <h2>The Fusion-designed pencil case is shown as a physical 3D-printed object in open and closed states.</h2>
-          <p>The project record also includes a video of the 3D-printing process.<br /><a href="#/projects">READ PROJECT RECORD →</a></p>
         </div>
       </section>
       <section className="featured" data-reveal>
@@ -203,9 +190,9 @@ function HomePage() {
           <span>FIG. 01 — OPEN STATE / INTERIOR AND LID VISIBLE</span>
         </a>
         <div className="featured-copy">
-          <span className="coral-label">PROJECT RECORD / 001</span>
+          <span className="coral-label">FEATURED PROJECT / RECORD 001</span>
           <h2>Pencil Case: Fusion model and printed artifact.</h2>
-          <p>The record connects the digital model to the fabricated object through open-state, closed-state, and process documentation.</p>
+          <p>Designed in Fusion and fabricated through 3D printing, the pencil case is documented in open and closed states alongside a process video. The complete record keeps the model, physical artifact, and source media connected.</p>
           <a className="action-link" href="#/projects">OPEN COMPLETE RECORD →</a>
         </div>
       </section>
@@ -225,7 +212,7 @@ function HomePage() {
 function AboutPage() {
   return (
     <>
-      <PageHeader label="PROFILE / 001" title={<>Engineering through<br />evidence and iteration.</>} intro="Kinetic Logic Labs is Ziyao Xu’s independent portfolio for engineering work, CAD practice, fabrication, and science research." />
+      <PageHeader label="PROFILE / 001" title={<>Engineering through evidence and iteration.</>} intro="Kinetic Logic Labs is Ziyao Xu’s independent portfolio for engineering work, CAD practice, fabrication, and science research." />
       <section className="editorial-grid" data-reveal>
         <figure className="portrait">
           <MediaImage src={ziyaoPhoto} alt="Portrait of Ziyao Xu" />
@@ -250,7 +237,7 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <>
-      <PageHeader label="PROJECTS / DOCUMENTED WORK" title={<>From digital model<br />to physical record.</>} intro="Projects are presented as technical records: context, tools, physical evidence, and source media remain connected." />
+      <PageHeader label="PROJECTS / DOCUMENTED WORK" title={<>From digital model to physical record.</>} intro="Projects are presented as technical records: context, tools, physical evidence, and source media remain connected." />
       <article className="project-record" data-reveal>
         <header>
           <span className="coral-label">PROJECT RECORD / 001</span>
@@ -290,7 +277,7 @@ function RepositoryPage() {
   ];
   return (
     <>
-      <PageHeader label="REPOSITORY / SOURCE MATERIAL" title={<>An index of the<br />available evidence.</>} intro="The repository separates source media from interpretation so each project claim can be traced to an existing record." />
+      <PageHeader label="REPOSITORY / SOURCE MATERIAL" title={<>An index of the available evidence.</>} intro="The repository separates source media from interpretation so each project claim can be traced to an existing record." />
       <section className="repository" data-reveal>
         <div className="repository-head"><span>RECORD</span><span>DESCRIPTION</span><span>FORMAT</span><span>ACCESS</span></div>
         {records.map((record) => (
@@ -318,7 +305,7 @@ function ContactPage() {
   };
   return (
     <>
-      <PageHeader label="CONTACT / INQUIRY" title={<>Start a technical<br />conversation.</>} intro="Questions, feedback, and project inquiries can be sent directly to Kinetic Logic Labs." />
+      <PageHeader label="CONTACT / INQUIRY" title={<>Start a technical conversation.</>} intro="Questions, feedback, and project inquiries can be sent directly to Kinetic Logic Labs." />
       <section className="contact-layout" data-reveal>
         <form className="contact-form" onSubmit={submit}>
           <label>NAME<input required name="name" autoComplete="name" /></label>
