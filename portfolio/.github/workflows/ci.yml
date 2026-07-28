@@ -1,4 +1,4 @@
-name: Validate sites
+name: Validate portfolio
 
 on:
   push:
@@ -22,16 +22,12 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: portfolio/package-lock.json
 
       - name: Install dependencies
         run: npm ci
-        working-directory: portfolio
 
       - name: Run linter
         run: npm run lint
-        working-directory: portfolio
 
       - name: Build application
         run: npm run build
-        working-directory: portfolio

@@ -1,11 +1,26 @@
+import {execFileSync} from 'node:child_process';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+function lastUpdatedMonth() {
+  try {
+    return execFileSync('git', ['log', '-1', '--format=%cs'], {encoding: 'utf8'})
+      .trim()
+      .slice(0, 7)
+      .replace('-', '.');
+  } catch {
+    return new Date().toISOString().slice(0, 7).replace('-', '.');
+  }
+}
+
 export default defineConfig(() => {
   return {
     base: './',
+    define: {
+      __LAST_UPDATED__: JSON.stringify(lastUpdatedMonth()),
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

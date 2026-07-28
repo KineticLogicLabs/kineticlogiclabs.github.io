@@ -1,4 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import pencilCaseOpen from './pencil_case_open.jpeg';
 import pencilCaseClosed from './pencil_box_closed.jpeg';
 import pencilCaseProcess from './pencil_case_3_top_half_1.mp4';
@@ -14,6 +15,8 @@ const pages: { id: Page; label: string }[] = [
   { id: 'repository', label: 'Repository' },
   { id: 'contact', label: 'Contact' },
 ];
+
+const desktopNavigationQuery = '(min-width: 881px)';
 
 function Logo() {
   return (
@@ -39,10 +42,19 @@ function routeFor(page: Page) {
   return page === 'home' ? '#/' : `#/${page}`;
 }
 
-function pageFromHash(): Page {
+function pageFromHash(fallback: Page = 'home'): Page {
   const candidate = window.location.hash.replace(/^#\/?/, '') || 'home';
-  return pages.some((item) => item.id === candidate) ? candidate as Page : 'home';
+  return pages.some((item) => item.id === candidate) ? candidate as Page : fallback;
 }
+
+type RouteViewTransition = {
+  finished: Promise<void>;
+  skipTransition?: () => void;
+};
+
+type ViewTransitionDocument = Document & {
+  startViewTransition?: (update: () => void) => RouteViewTransition;
+};
 
 function Header({ page }: { page: Page }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,7 +73,7 @@ function Header({ page }: { page: Page }) {
       }
     };
     const closeOnDesktop = () => {
-      if (window.innerWidth > 760) setMenuOpen(false);
+      if (window.matchMedia(desktopNavigationQuery).matches) setMenuOpen(false);
     };
     window.addEventListener('keydown', closeOnEscape);
     window.addEventListener('resize', closeOnDesktop);
@@ -82,6 +94,7 @@ function Header({ page }: { page: Page }) {
         {pages.map((item) => (
           <a key={item.id} href={routeFor(item.id)} aria-current={page === item.id ? 'page' : undefined}>
             {item.label}
+            {page === item.id && <span className="nav-active-indicator" aria-hidden="true" />}
           </a>
         ))}
       </nav>
@@ -108,14 +121,14 @@ function Header({ page }: { page: Page }) {
               href={routeFor(item.id)}
               aria-current={page === item.id ? 'page' : undefined}
               tabIndex={menuOpen ? 0 : -1}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => flushSync(() => setMenuOpen(false))}
             >
               {item.label}
             </a>
           ))}
         </nav>
       </div>
-      <span className="issue">JOURNAL / 2026.02</span>
+      <span className="issue">JOURNAL / {__LAST_UPDATED__}</span>
     </header>
   );
 }
@@ -328,37 +341,60 @@ function ContactPage() {
 export default function App() {
   const initialPage = pageFromHash();
   const [page, setPage] = useState<Page>(initialPage);
-  const [routePhase, setRoutePhase] = useState<'idle' | 'exiting' | 'entering'>('idle');
   const pageRef = useRef<Page>(initialPage);
-  const routeTimer = useRef<number | undefined>(undefined);
+  const activeTransition = useRef<RouteViewTransition | null>(null);
 
   useEffect(() => {
     const syncRoute = () => {
-      const next = pageFromHash();
+      const next = pageFromHash(pageRef.current);
       if (next === pageRef.current) return;
-      window.clearTimeout(routeTimer.current);
+
+      const current = pageRef.current;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reducedMotion) {
+      const viewTransitionDocument = document as ViewTransitionDocument;
+      const updateRoute = () => {
         pageRef.current = next;
-        setPage(next);
         window.scrollTo(0, 0);
-        setRoutePhase('idle');
+        flushSync(() => setPage(next));
+        document.querySelectorAll<HTMLElement>('#main [data-reveal]')
+          .forEach((target) => target.classList.add('is-visible'));
+      };
+
+      activeTransition.current?.skipTransition?.();
+      if (reducedMotion || !viewTransitionDocument.startViewTransition) {
+        updateRoute();
         return;
       }
-      setRoutePhase('exiting');
-      routeTimer.current = window.setTimeout(() => {
-        pageRef.current = next;
-        setPage(next);
-        window.scrollTo(0, 0);
-        setRoutePhase('entering');
-        requestAnimationFrame(() => requestAnimationFrame(() => setRoutePhase('idle')));
-      }, 110);
+
+      const direction = pages.findIndex((item) => item.id === next) > pages.findIndex((item) => item.id === current)
+        ? 'forward'
+        : 'backward';
+      document.documentElement.dataset.routeDirection = window.matchMedia(desktopNavigationQuery).matches
+        ? direction
+        : 'fade';
+      document.documentElement.classList.add('is-route-transitioning');
+      const transition = viewTransitionDocument.startViewTransition(updateRoute);
+      activeTransition.current = transition;
+      transition.finished.finally(() => {
+        if (activeTransition.current !== transition) return;
+        activeTransition.current = null;
+        document.documentElement.classList.remove('is-route-transitioning');
+        delete document.documentElement.dataset.routeDirection;
+      });
     };
-    syncRoute();
+    const cancelTransitionAcrossBreakpoint = () => {
+      if (!activeTransition.current) return;
+      activeTransition.current.skipTransition?.();
+      activeTransition.current = null;
+      document.documentElement.classList.remove('is-route-transitioning');
+      delete document.documentElement.dataset.routeDirection;
+    };
     window.addEventListener('hashchange', syncRoute);
+    window.addEventListener('resize', cancelTransitionAcrossBreakpoint);
     return () => {
       window.removeEventListener('hashchange', syncRoute);
-      window.clearTimeout(routeTimer.current);
+      window.removeEventListener('resize', cancelTransitionAcrossBreakpoint);
+      activeTransition.current?.skipTransition?.();
     };
   }, []);
 
@@ -392,7 +428,10 @@ export default function App() {
     <div className="site-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <div className="blue-shell"><Header page={page} /></div>
-      <main id="main" className={`route-stage is-${routePhase}`} aria-live="polite">{content[page]}</main>
+      <main id="main" className={`route-stage route-page-${page}`} aria-live="polite">
+        <div className="route-blue-background" aria-hidden="true" />
+        <div className="route-content">{content[page]}</div>
+      </main>
       <Footer />
     </div>
   );

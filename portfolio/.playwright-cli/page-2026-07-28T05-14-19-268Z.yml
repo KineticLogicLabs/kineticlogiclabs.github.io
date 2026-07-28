@@ -1,0 +1,81 @@
+- generic [ref=e3]:
+  - link "Skip to content" [ref=e4] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e6]:
+    - link "Kinetic Logic Labs home" [ref=e7] [cursor=pointer]:
+      - /url: "#/"
+      - generic [ref=e12]: KINETICLOGIC LABS
+    - navigation "Primary navigation" [ref=e13]:
+      - link "Home" [ref=e14] [cursor=pointer]:
+        - /url: "#/"
+      - link "About" [ref=e16] [cursor=pointer]:
+        - /url: "#/about"
+      - link "Projects" [ref=e17] [cursor=pointer]:
+        - /url: "#/projects"
+      - link "Repository" [ref=e18] [cursor=pointer]:
+        - /url: "#/repository"
+      - link "Contact" [ref=e19] [cursor=pointer]:
+        - /url: "#/contact"
+    - generic [ref=e20]: JOURNAL / 2026.07
+  - main [ref=e21]:
+    - generic [ref=e23]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: INDEPENDENT ENGINEERING JOURNAL
+        - heading "Observe. Model. Test." [level=1] [ref=e27]: Observe.Model. Test.
+        - paragraph [ref=e28]: Kinetic Logic Labs records work in CAD, fabrication, and science research with enough context to show how an idea changed into evidence.
+        - link "BROWSE ALL PROJECTS" [ref=e29] [cursor=pointer]:
+          - /url: "#/projects"
+      - generic [ref=e30]:
+        - link "Open the Pencil Case project record" [ref=e31] [cursor=pointer]:
+          - /url: "#/projects"
+          - img "Open 3D-printed pencil case showing its interior" [ref=e32]
+          - generic [ref=e33]: FIG. 01 — OPEN STATE / INTERIOR AND LID VISIBLE
+        - generic [ref=e34]:
+          - text: FEATURED PROJECT / RECORD 001
+          - 'heading "Pencil Case: Fusion model and printed artifact." [level=2] [ref=e35]'
+          - paragraph [ref=e36]: Designed in Fusion and fabricated through 3D printing, the pencil case is documented in open and closed states alongside a process video. The complete record keeps the model, physical artifact, and source media connected.
+          - link "OPEN COMPLETE RECORD →" [ref=e37] [cursor=pointer]:
+            - /url: "#/projects"
+      - generic [ref=e39]:
+        - text: PORTFOLIO INDEX
+        - heading "Records, evidence, and background" [level=2] [ref=e40]
+        - link "01 / PROJECT Pencil Case — model and physical artifact PROJECT RECORD →" [ref=e41] [cursor=pointer]:
+          - /url: "#/projects"
+          - generic [ref=e42]: 01 / PROJECT
+          - strong [ref=e43]: Pencil Case — model and physical artifact
+          - generic [ref=e44]: PROJECT RECORD →
+        - link "02 / REPOSITORY Source media and process documentation VIEW ARCHIVE →" [ref=e45] [cursor=pointer]:
+          - /url: "#/repository"
+          - generic [ref=e46]: 02 / REPOSITORY
+          - strong [ref=e47]: Source media and process documentation
+          - generic [ref=e48]: VIEW ARCHIVE →
+        - link "03 / PROFILE Ziyao Xu — STEM, engineering, and CAD READ PROFILE →" [ref=e49] [cursor=pointer]:
+          - /url: "#/about"
+          - generic [ref=e50]: 03 / PROFILE
+          - strong [ref=e51]: Ziyao Xu — STEM, engineering, and CAD
+          - generic [ref=e52]: READ PROFILE →
+  - contentinfo [ref=e53]:
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - link [ref=e56] [cursor=pointer]:
+          - /url: "#/"
+          - generic [ref=e61]: KINETICLOGIC LABS
+        - paragraph [ref=e62]: An independent engineering portfolio documenting CAD, fabrication, and science research.
+        - link "kineticlogiclabs@gmail.com" [ref=e63] [cursor=pointer]:
+          - /url: mailto:kineticlogiclabs@gmail.com
+      - navigation "Footer navigation" [ref=e64]:
+        - generic [ref=e65]: EXPLORE
+        - link "Home" [ref=e66] [cursor=pointer]:
+          - /url: "#/"
+        - link "About" [ref=e67] [cursor=pointer]:
+          - /url: "#/about"
+        - link "Projects" [ref=e68] [cursor=pointer]:
+          - /url: "#/projects"
+        - link "Repository" [ref=e69] [cursor=pointer]:
+          - /url: "#/repository"
+        - link "Contact" [ref=e70] [cursor=pointer]:
+          - /url: "#/contact"
+      - generic [ref=e71]:
+        - generic [ref=e72]: © 2026 KINETIC LOGIC LABS
+        - generic [ref=e73]: ALL RIGHTS RESERVED
+        - generic [ref=e74]: WEBSITE DESIGN BY ZIYAO XU
